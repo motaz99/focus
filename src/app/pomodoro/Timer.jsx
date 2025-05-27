@@ -53,6 +53,10 @@ export default function Timer() {
     setIsRunning(false);
   };
 
+  const goNextPeriodHandler = () => {
+    nextPeriod();
+  };
+
   return (
     <div className="bg-[#9FAF87] rounded-3xl p-8 w-[320px] md:w-[400px] text-center shadow-lg">
       <div className="flex justify-center mb-6 rounded-xl bg-[#F5F5F5] overflow-hidden w-[90%] mx-auto text-sm font-semibold">
@@ -109,6 +113,13 @@ export default function Timer() {
           PAUSE
         </button>
       )}
+
+      <button
+        onClick={goNextPeriodHandler}
+        className="bg-[#F5F5F5] text-[#9FAF87] font-bold py-2 px-6 rounded-xl shadow-inner hover:shadow-md hover:translate-y-[1px] active:translate-y-[2px] active:shadow-sm transition-all duration-200"
+      >
+        NEXT
+      </button>
     </div>
   );
 }
