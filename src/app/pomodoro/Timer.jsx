@@ -20,7 +20,6 @@ export default function Timer() {
   const [currentPeriod, setCurrentPeriod] = useState(initialPeriod);
   const [focusPeriodsCounter, setFocusPeriodsCounter] = useState(1);
   const [counter, setCounter] = useState(1);
-  const [selectedTab, setSelectedTab] = useState("focus");
 
   const nextPeriod = () => {
     setIsRunning(false);
