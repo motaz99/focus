@@ -1,7 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { decrementTime, determineNextPeriod } from "../services/timer";
+import {
+  decrementTime,
+  determineNextPeriod,
+  restartPeriod,
+} from "../services/timer";
 
 const periods = {
   focus: { id: "focus", mins: 0, secs: 3 },
@@ -56,6 +60,11 @@ export default function Timer() {
     nextPeriod();
   };
 
+  const restartPeriodHandler = () => {
+    restartPeriod(currentPeriod, setTime);
+    setIsRunning(false);
+  };
+
   return (
     <div className="bg-[#9FAF87] rounded-3xl p-8 w-[320px] md:w-[400px] text-center shadow-lg">
       <div className="flex justify-center mb-6 rounded-xl bg-[#F5F5F5] overflow-hidden w-[90%] mx-auto text-sm font-semibold">
@@ -97,28 +106,37 @@ export default function Timer() {
         #{focusPeriodsCounter}
       </div>
 
-      {!isRunning ? (
+      <div className="flex justify-between items-center gap-2 w-[100%] max-w-[300px] mx-auto">
         <button
-          onClick={startHandler}
-          className="bg-[#F5F5F5] text-[#9FAF87] font-bold py-2 px-8 rounded-xl shadow-inner hover:shadow-md hover:translate-y-[1px] active:translate-y-[2px] active:shadow-sm transition-all duration-200"
+          onClick={restartPeriodHandler}
+          className="bg-[#F5F5F5] text-[#9FAF87] font-bold py-2 px-4 rounded-xl shadow-inner hover:shadow-md hover:translate-y-[1px] active:translate-y-[2px] active:shadow-sm transition-all duration-200 text-sm"
         >
-          START
+          RESTART
         </button>
-      ) : (
-        <button
-          onClick={pauseHandler}
-          className="bg-[#F5F5F5] text-[#9FAF87] font-bold py-2 px-8 rounded-xl shadow-inner hover:shadow-md hover:translate-y-[1px] active:translate-y-[2px] active:shadow-sm transition-all duration-200"
-        >
-          PAUSE
-        </button>
-      )}
 
-      <button
-        onClick={goNextPeriodHandler}
-        className="bg-[#F5F5F5] text-[#9FAF87] font-bold py-2 px-6 rounded-xl shadow-inner hover:shadow-md hover:translate-y-[1px] active:translate-y-[2px] active:shadow-sm transition-all duration-200"
-      >
-        NEXT
-      </button>
+        {!isRunning ? (
+          <button
+            onClick={startHandler}
+            className="bg-[#F5F5F5] text-[#9FAF87] font-bold py-2 px-6 rounded-xl shadow-inner hover:shadow-md hover:translate-y-[1px] active:translate-y-[2px] active:shadow-sm transition-all duration-200"
+          >
+            START
+          </button>
+        ) : (
+          <button
+            onClick={pauseHandler}
+            className="bg-[#F5F5F5] text-[#9FAF87] font-bold py-2 px-6 rounded-xl shadow-inner hover:shadow-md hover:translate-y-[1px] active:translate-y-[2px] active:shadow-sm transition-all duration-200"
+          >
+            PAUSE
+          </button>
+        )}
+
+        <button
+          onClick={goNextPeriodHandler}
+          className="bg-[#F5F5F5] text-[#9FAF87] font-bold py-2 px-4 rounded-xl shadow-inner hover:shadow-md hover:translate-y-[1px] active:translate-y-[2px] active:shadow-sm transition-all duration-200 text-sm"
+        >
+          NEXT
+        </button>
+      </div>
     </div>
   );
 }

@@ -24,3 +24,7 @@ export const determineNextPeriod = (currentPeriod, counter, periods) => {
 
   return periods.focus;
 };
+
+export const restartPeriod = (currentPeriod, setTime) => {
+  setTime([currentPeriod.mins, currentPeriod.secs]);
+};
