@@ -1,10 +1,11 @@
 import Timer from "./Timer";
+import ActionPanel from "../components/ActionPanel/ActionPanel";
 
 export default function Pomodoro() {
   return (
     <>
       <Timer />
-      {/* We'll add Start button and more components later here */}
+      <ActionPanel />
     </>
   );
 }
